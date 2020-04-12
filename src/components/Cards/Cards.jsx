@@ -6,7 +6,7 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import cx from "classnames";
 
-import styles from "./Cards.modules.css";
+import styles from "./Cards.module.css";
 //pass props to card(acc to app.js)
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
