@@ -16,11 +16,13 @@ const CountryPicker = () => {
    
     fetchAPI();
   }, [setFetchedCountries]);
-  console.log(fetchedCountries);
+/**
+ * loop over the fetched countries and create an option for each country
+ */
   return (
     <FormControl className={styles.formControl}>
       <NativeSelect>
-        <option value="global">Global</option>
+     {fetchedCountries.map((country,i)=><option key={i}value={country}>{country}</option>)}
       </NativeSelect>
     </FormControl>
   );
