@@ -5,14 +5,23 @@ import {fetchData} from './api';
 
 
 class App extends Component{
+
+    state={
+        data:{},
+    }
     async componentDidMount(){
-        const data =await fetchData();
-        console.log(data);
+        const fetchdata =await fetchData();
+        this.setState({data: fetchData});
     }
     render(){
+        //take data outside. Data is a named constant
+        const {data}=this.state;
+
+
         return (
             <div className={styles.ccontainer}>
-              <Cards/>
+            //pass data as props to card component
+              <Cards data={data/>
               <CountryPicker/>
               <Chart/>
             
