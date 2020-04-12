@@ -1,0 +1,2 @@
+1) Install material UI. Acts like bootstrap but in a more sophisticated way.
+2) add cards component from material ui. No need to write a lot of css.
