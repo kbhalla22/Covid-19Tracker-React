@@ -17,11 +17,11 @@ class App extends Component{
         //take data outside. Data is a named constant
         const {data}=this.state;
 
-
+//pass data as props to card component
         return (
             <div className={styles.ccontainer}>
-            //pass data as props to card component
-              <Cards data={data/>
+            
+              <Cards data={data}/>
               <CountryPicker/>
               <Chart/>
             
