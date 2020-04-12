@@ -11,7 +11,7 @@ class App extends Component{
     }
     async componentDidMount(){
         const fetchdata =await fetchData();
-        this.setState({data: fetchData});
+        this.setState({data: fetchdata});
     }
     render(){
         //take data outside. Data is a named constant
