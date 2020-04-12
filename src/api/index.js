@@ -10,11 +10,17 @@ export const fetchData = async () => {
 }
 /**
  * {data}acts like an array
+ * loop over data array and show only the relevant one.We can map over it
  */
 export const fetchDailyData = async()=>{
   try{
 const {data}= await axios.get(`${url}/daily`);
-console.log(data);
+const modifiedData =data.map((dailyData)=>({
+  confirmed: dailyData.confirmed.total,
+  deaths: dailyData.deaths.total,
+  dailyData: dailyData.reportDate,
+}));
+return modifiedData;
   }catch(error){
 
   }
