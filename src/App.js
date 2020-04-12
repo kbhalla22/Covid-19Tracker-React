@@ -3,15 +3,29 @@ import {Cards,Chart,CountryPicker} from './components';
 import styles from './App.module.css';
 import {fetchData} from './api';
 
-
+/**
+ * Need to have country in the state of app.js because it is the parent component of all the components.
+ */
 class App extends Component{
 
     state={
         data:{},
+        country:'',
     }
     async componentDidMount(){
         const fetchdata =await fetchData();
         this.setState({data: fetchdata});
+    }
+    /**
+     * State to change the country
+     * Pass this method as a prop to country picker in this file only
+     */
+    handleCountryChange=async(country)=>{
+        //fetch data
+        const fetchdata =await fetchData(country);
+        console.log(fetchdata);
+
+        //set data
     }
     render(){
         //take data outside. Data is a named constant
@@ -22,7 +36,7 @@ class App extends Component{
             <div className={styles.ccontainer}>
             
               <Cards data={data}/>
-              <CountryPicker/>
+              <CountryPicker handleCountryChange={this.handleCountryChange}/>
               <Chart/>
             
             </div>

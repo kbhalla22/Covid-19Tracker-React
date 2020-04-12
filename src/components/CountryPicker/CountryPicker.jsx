@@ -7,7 +7,7 @@ import { fetchCountries } from "../../api";
  * inside that we create an asynchronous function
  * },[setFetchedCountries. added a second parameter to show that it will only change when
  */
-const CountryPicker = () => {
+const CountryPicker = ({handleCountryChange}) => {
   const [fetchedCountries, setFetchedCountries] = useState([]);
   useEffect(() => {
     const fetchAPI = async () => {
@@ -18,10 +18,12 @@ const CountryPicker = () => {
   }, [setFetchedCountries]);
 /**
  * loop over the fetched countries and create an option for each country
+ * e is an event
+ * in the arguments, pass e.target.value
  */
   return (
     <FormControl className={styles.formControl}>
-      <NativeSelect>
+      <NativeSelect defaultValue="" onChange={(e)=>handleCountryChange(e.target.value)}> 
      {fetchedCountries.map((country,i)=><option key={i}value={country}>{country}</option>)}
       </NativeSelect>
     </FormControl>
