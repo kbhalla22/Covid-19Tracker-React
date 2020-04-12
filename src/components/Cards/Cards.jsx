@@ -3,8 +3,11 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 
 import styles from "./Cards.modules.css";
 //pass props to card(acc to app.js)
-const Cards = (props) => {
-  console.log(props);
+const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) => {
+    if(!confirmed){
+        return 'Loading';
+    }
+ 
   return (
     /**
      * this div acts as a container
@@ -21,7 +24,7 @@ const Cards = (props) => {
             <Typography color="textSecondary" gutterBottom>
               Infected
             </Typography>
-            <Typography variant="h5">REAL DATA</Typography>
+            <Typography variant="h5">{confirmed.value}</Typography>
             <Typography color="textSecondary" >REAL DATE</Typography>
             <Typography variant="body2" >Number of active cases of COVID-19</Typography>
           </CardContent>
