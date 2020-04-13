@@ -12,7 +12,7 @@ import styles from "./Chart.module.css";
  * fetchAPI() is like a self calling function
  * we will 2 different charts so we have to create constants for each one of them.
  */
-const Charts = () => {
+const Charts = ({data,country}) => {
   const [dailyData, setDailyData] = useState([]);
   useEffect(() => {
     const fetchAPI = async () => {
@@ -49,6 +49,27 @@ const Charts = () => {
       }}
     />
   ) : null);
+/**
+ * Barchart is equal to some jsx. If data is there then we show bar chart. else return null
+ * data is coming from props
+ */
+  const barChart=(
+confirmed?(
+    <Bar data={{
+        labels:['Infected','Recovered','Deaths'],
+        datasets:[{
+            label:'People',
+            backgroundColor:['rgba(0,0,255,0.5)','rgba(0,255,0,0.5)','rgba(255,0,0,0.5)']
+        }],
+        data:[confirmed,recovered,deaths]
+    }
+options={{
+    legend:{display:false},
+    title:{display:true,text:`Current state in ${country}`}
+}
+}/>
+): null
+  )
   return (<div className={styles.container}>{lineChart}</div>);
 };
 export default Charts;
