@@ -29,7 +29,7 @@ class App extends Component{
     }
     render(){
         //take data outside. Data is a named constant
-        const {data}=this.state;
+        const {data,country}=this.state;
 
 //pass data as props to card component
         return (
@@ -37,7 +37,7 @@ class App extends Component{
             
               <Cards data={data}/>
               <CountryPicker handleCountryChange={this.handleCountryChange}/>
-              <Chart/>
+              <Chart data={data} country={country}/>
             
             </div>
         )
