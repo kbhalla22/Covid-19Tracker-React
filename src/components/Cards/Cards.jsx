@@ -60,7 +60,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           component={Card}
           xs={12}
           md={3}
-          className={cx(styles.card, styles.recovered)}
+          className={cx(styles.card, styles.deaths)}
         >
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
