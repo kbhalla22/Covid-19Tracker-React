@@ -12,7 +12,7 @@ import styles from "./Chart.module.css";
  * fetchAPI() is like a self calling function
  * we will 2 different charts so we have to create constants for each one of them.
  */
-const Charts = ({data,country}) => {
+const Charts = ({ data: { confirmed, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
   useEffect(() => {
     const fetchAPI = async () => {
@@ -27,7 +27,7 @@ const Charts = ({data,country}) => {
    * if daily data is available , then we return line chart, otherwise we return null
    * in parameter()loop through daily data and destructure the date
    */
-  const lineChart = (dailyData.length ? (
+  const lineChart = dailyData.length ? (
     <Line
       data={{
         labels: dailyData.map(({ date }) => date),
@@ -36,7 +36,7 @@ const Charts = ({data,country}) => {
             data: dailyData.map(({ confirmed }) => confirmed),
             label: "Infected",
             borderColor: "#3333ff",
-            fill: true,
+            fill: true
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
@@ -48,28 +48,39 @@ const Charts = ({data,country}) => {
         ]
       }}
     />
-  ) : null);
-/**
- * Barchart is equal to some jsx. If data is there then we show bar chart. else return null
- * data is coming from props
- */
-  const barChart=(
-confirmed?(
-    <Bar data={{
-        labels:['Infected','Recovered','Deaths'],
-        datasets:[{
-            label:'People',
-            backgroundColor:['rgba(0,0,255,0.5)','rgba(0,255,0,0.5)','rgba(255,0,0,0.5)']
-        }],
-        data:[confirmed,recovered,deaths]
-    }
-options={{
-    legend:{display:false},
-    title:{display:true,text:`Current state in ${country}`}
-}
-}/>
-): null
-  )
-  return (<div className={styles.container}>{lineChart}</div>);
+  ) : null;
+  /**
+   * Barchart is equal to some jsx. If data is there then we show bar chart. else return null
+   * data is coming from props
+   */
+  const barChart = (confirmed ? (
+    <Bar
+      data={
+        {
+          labels: ['Infected', 'Recovered', 'Deaths'],
+          datasets: [
+            {
+              label: "People",
+              backgroundColor: [
+                "rgba(0,0,255,0.5)",
+                "rgba(0,255,0,0.5)",
+                "rgba(255,0,0,0.5)"
+              
+            
+          ],
+          data: [confirmed, recovered, deaths]
+        }]
+    }}
+        options = {{
+          legend: { display: false },
+          title: { display: true, text: `Current state in ${country}` },
+        }
+      }
+    />
+  ) : null
+  );
+  return (
+    <div className={styles.container}>{country ? barChart : lineChart}</div>
+  );
 };
 export default Charts;
