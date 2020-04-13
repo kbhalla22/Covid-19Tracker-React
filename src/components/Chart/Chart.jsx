@@ -11,6 +11,7 @@ import styles from "./Chart.module.css";
  * Await means we wait for it. It is a promise
  * fetchAPI() is like a self calling function
  * we will 2 different charts so we have to create constants for each one of them.
+ * 2nd argument is empty array because it behaves like component did mount. only executes once. 
  */
 const Charts = ({ data: { confirmed, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
@@ -21,7 +22,7 @@ const Charts = ({ data: { confirmed, recovered, deaths }, country }) => {
     };
 
     fetchAPI();
-  });
+  },[]);
   /**
    * Data for line will be an object
    * if daily data is available , then we return line chart, otherwise we return null
@@ -68,7 +69,7 @@ const Charts = ({ data: { confirmed, recovered, deaths }, country }) => {
               
             
           ],
-          data: [confirmed, recovered, deaths]
+          data: [confirmed.value, recovered.value, deaths.value]
         }]
     }}
         options = {{
