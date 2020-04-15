@@ -1,2 +1,5 @@
 1) Install material UI. Acts like bootstrap but in a more sophisticated way.
 2) add cards component from material ui. No need to write a lot of css.
+3) App.js is the only class based component which has ome initial states as data and country.
+4) fetchdata is an asynchronous function that is only returning the data that we need
+5) in countrypicker, once country is chosen it goes back to app.js
